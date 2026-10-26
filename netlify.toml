@@ -1,0 +1,16 @@
+# Used when you deploy from Git or with the Netlify CLI.
+# (Netlify Drop of the prebuilt `dist` folder ignores this file and the
+# function below, so the "proxy" routing option needs a Git/CLI deploy.)
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "geolocation=(self)"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
